@@ -58,7 +58,7 @@ function LunchCheckController($scope) {
     if($scope.lunchItemCount > 3) {
       $scope.lunchMessage="Too much!"
       if($scope.emptyLunchItemFlag == 1) {
-        $scope.lunchMessage2="(You have more than three items, in addition to the empty item(s) you added)"
+        $scope.lunchMessage2="(You have more than three items, in addition to the empty item(s) you added. Remember empty items don't count.)"
       }
       else {
         $scope.lunchMessage2="(You have more than three items)"
@@ -67,7 +67,7 @@ function LunchCheckController($scope) {
     else if($scope.lunchItemCount <= 3 && $scope.lunchItemCount > 0) {
       $scope.lunchMessage="Enjoy!"
       if($scope.emptyLunchItemFlag == 1) {
-        $scope.lunchMessage2="(Btw, at least one of the items you entered were empty)";
+        $scope.lunchMessage2="(Btw, at least one of the items you entered were empty. Remember, empty items don't count.)";
       }
       else {
         $scope.lunchMessage2="";
