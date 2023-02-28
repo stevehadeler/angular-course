@@ -9,29 +9,16 @@ angular.module('ShoppingListCheckOff', [])
 ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
   var itemToBuy = this;
-  var itemsBought = 0;
-  var soldOut = false;
 
   itemToBuy.items = ShoppingListCheckOffService.getToBuyList();
 
   itemToBuy.buyItem = function(itemIndex) {
     try {
       ShoppingListCheckOffService.addItemToBoughtList(itemIndex);
-      itemsBought++;
-      //console.log(itemsBought);
     }
     catch(error) {
-      console.log("error caught");
       itemToBuy.errorMessage=error.message;
     }
-    console.log(itemToBuy.errorMessage);
-    /*if(itemsBought===itemToBuy.items.length) {
-      itemToBuy.soldOut = true;
-    }
-    if(soldOut) {
-      throw new Error("Everything is bought!");
-    }*/
-
   };
 
 
@@ -43,14 +30,6 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
   var blnBoughtListNotEmpty = false;
 
   itemBought.items = ShoppingListCheckOffService.getAlreadyBoughtList();
-  //console.log(itemBought.items.length);
-  //itemAdder.itemName = "";
-  //itemAdder.itemQuantity = "";
-
-  /*
-  itemBought.addItem = function () {
-    ShoppingListService.addItem(itemBought.itemName, itemBought.itemQuantity);
-  }*/
 }
 
 function ShoppingListCheckOffService() {
@@ -113,17 +92,12 @@ function ShoppingListCheckOffService() {
 
   service.checkForOpenItems = function() {
     var counter = 0;
-    //console.log("toBuyList.length:", toBuyList.length);
     for(var i=0;i<toBuyList.length;i++){
-      //console.log("toBuyList[i].bought:", (toBuyList[i].bought));
       if(toBuyList[i].bought) {
         counter++;
       }
     }
-    //console.log(counter);
-    //console.log("console.log(counter===toBuyList.length: ", (counter===toBuyList.length));
     if(counter===toBuyList.length) {
-      console.log("Error was thrown");
       throw new Error("Everything is bought!");
     }
 
